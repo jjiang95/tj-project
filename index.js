@@ -1,23 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form1 = document.querySelector("#by-number");
-    form1 = addEventListener("submit", (e) => {
-        e.preventDefault();
-        let id = e.target.character[0].value;
-    fetch(`https://pokeapi.co/api/v2/pokemon/search.php?s=${id}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-      })
-      .catch(error => console.log(error))
-      })
-    });
+  const form1 = document.querySelector("#by-name") 
+  form1.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let searchText = e.target;
+      if (searchText) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/search.php?s=${searchText}`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+          })
+          .catch(error => console.log(error))
+      } else {
+        console.log("Please enter a search term.");
+      }
+  })
+  });
 
     const poke_container = document.getElementById("poke_container");
     const pokemon_number = 150;
     
     const colors = {
       fire: '#FDDFDF',
-      grass: '#DEFDE0',
+      grass: '#DEFDE0', 
       electric: '#FCF7DE',
       water: '#DEF3FD',
       ground: '#f4e7da',
@@ -40,13 +44,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
     
-    const getPokemon = async (id) => {
+    const getPokemon = async(id) => {
       const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
       const res = await fetch(url);
       const pokemon = await res.json();
-      createPokemonCard(pokemon);
-    };
-    
+      if (pokemon) {
+        return pokemon;
+      } else {
+        throw new Error("Pokemon not found");
+      }
+    }
     fetchPokemon();
     
     function createPokemonCard(pokemon) {
@@ -81,4 +88,5 @@ document.addEventListener("DOMContentLoaded", () => {
     } {
 
 }
+
     
