@@ -11,7 +11,7 @@ Please pull the index.html file and then choose your preferred browser!
 ## Usage
 
 
-You will be able to search ANY pokemon and get info about them!
+You will be able to search about the first 150 pokemon and get info about them!
 
 
 ## Coding Used

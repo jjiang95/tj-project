@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const form1 = document.querySelector("#by-name") 
   form1.addEventListener("submit", (e) => {
       e.preventDefault();
-      let searchText = e.target;
+      let searchText = e.target.children[0].value;
       if (searchText) {
-        fetch(`https://pokeapi.co/api/v2/pokemon/search.php?s=${searchText}`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${searchText}/`)
           .then(response => response.json())
           .then(data => {
             console.log(data)
